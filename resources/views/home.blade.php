@@ -1,9 +1,9 @@
 @extends('layouts.base')
 
-@section('title', 'Мои база знаний')
+@section('title', 'Моя база знаний')
 
 @section('main')
-<h3 class="text-center">Добро пожаловать, {{ Auth::user()->name }}</h3>
+<h3 class="text-right">Добро пожаловать, {{ Auth::user()->name }}</h3>
 <p class="text-right"><a href="{{ route('note.add') }}">Добавить заметку</a></p>
 @if (count($notes) > 0)
 <table class="">
