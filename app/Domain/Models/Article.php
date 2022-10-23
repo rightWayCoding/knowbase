@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Domain;
+namespace App\Domain\Models;
 
+use App\Domain\Contracts\DatabaseInterface;
 use App\Domain\DTO\ArticleDTO;
 use App\Domain\Enum\ArticleStatus;
-use App\Domain\Service\DatabaseInterface;
 
 /**
  * Базовая сущность блога
@@ -62,13 +62,5 @@ class Article
         $this->db->updateById($id, [
             'status' => ArticleStatus::Deleted
         ]);
-    }
-
-    /**
-     * Выдача прав на чтение
-     */
-    public function grandAccess(int $id)
-    {
-
     }
 }

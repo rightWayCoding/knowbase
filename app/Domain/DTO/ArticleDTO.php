@@ -9,8 +9,8 @@ class ArticleDTO extends DTO
 {
     public string $title;
     public string $text;
+    public int $authorId;
     public \DateTimeInterface $created;
     public \DateTimeInterface $updated;
-    public int $authorId;
     public ArticleStatus $status;
 }
