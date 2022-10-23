@@ -21,25 +21,27 @@ class Article
     /**
      * Создание статьи
      */
-    public function create(ArticleDTO $dto)
+    public function create(ArticleDTO $dto): bool
     {
-        $this->db->create($dto);
+        $id = $this->db->create($dto);
+        return (bool)$id;
     }
 
-    public function updateContent(int $id, ArticleDTO $dto)
+    public function updateContent(int $id, ArticleDTO $dto): bool
     {
-        $this->db->updateById($id, [
+        $count = $this->db->updateById($id, [
             'title' => $dto->title,
             'text' => $dto->text,
         ]);
+        return (bool)$count;
     }
 
     /**
      * Публикация: статья становиться доступна
      */
-    public function publish(int $id)
+    public function publish(int $id): bool
     {
-        $this->db->updateById($id, [
+        return (bool)$this->db->updateById($id, [
             'status' => ArticleStatus::Published
         ]);
     }
@@ -47,9 +49,9 @@ class Article
     /**
      * Противоположно publish: статья становиться видна только автору
      */
-    public function hide(int $id)
+    public function hide(int $id): bool
     {
-        $this->db->updateById($id, [
+        return (bool)$this->db->updateById($id, [
             'status' => ArticleStatus::Hided
         ]);
     }
@@ -57,9 +59,9 @@ class Article
     /**
      * soft delete на статью (есть возможность восстановить)
      */
-    public function delete(int $id)
+    public function delete(int $id): bool
     {
-        $this->db->updateById($id, [
+        return (bool)$this->db->updateById($id, [
             'status' => ArticleStatus::Deleted
         ]);
     }
